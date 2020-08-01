@@ -1,0 +1,3 @@
+class Engineer < Employee
+  
+end
