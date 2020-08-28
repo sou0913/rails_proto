@@ -1,0 +1,3 @@
+class ReplaceProblem < Problem
+  
+end

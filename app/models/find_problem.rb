@@ -1,0 +1,3 @@
+class FindProblem < Problem
+  
+end
