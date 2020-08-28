@@ -1,7 +1,12 @@
 class EmployeesController < ApplicationController
+  # GET employees?page=1
   def index
-    employees = Employee.all
-    render json: employees
+    employees = Employee.page(params[:page])
+    total_rows = Employee.count
+    render json: { 
+      employees: employees,
+      total_rows: total_rows
+    }
   end
 
   # GET employees/1

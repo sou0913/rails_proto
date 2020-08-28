@@ -13,4 +13,8 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  user: postgres
+  password: regex-posgre
+  database: rails_proto_production
+  host: /cloudsql/rails-container-prototype:asia-northeast1:regex
