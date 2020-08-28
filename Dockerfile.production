@@ -14,7 +14,7 @@ COPY . /myapp
 
 # master.keyをセットする
 ARG _RAILS_MASTER_KEY
-ENV RAILS_MASTER_KEY ${_RAILS_MASTER_KEY}
+ENV RAILS_MASTER_KEY=${_RAILS_MASTER_KEY}
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
