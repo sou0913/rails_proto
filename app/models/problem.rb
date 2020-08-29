@@ -1,7 +1,7 @@
 class Problem < ApplicationRecord
 
-  has_many :matches
-  has_many :no_matches
+  has_many :matches, dependent: :destroy
+  has_many :no_matches, dependent: :destroy
 
   with_options presence: true do
     validates :title
