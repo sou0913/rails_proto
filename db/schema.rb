@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_070235) do
+ActiveRecord::Schema.define(version: 2020_08_29_045021) do
 
   create_table "employees", force: :cascade do |t|
     t.string "type"
@@ -18,6 +18,22 @@ ActiveRecord::Schema.define(version: 2020_08_27_070235) do
     t.integer "service_years"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.string "word"
+    t.integer "problem_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["problem_id"], name: "index_matches_on_problem_id"
+  end
+
+  create_table "no_matches", force: :cascade do |t|
+    t.string "word"
+    t.integer "problem_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["problem_id"], name: "index_no_matches_on_problem_id"
   end
 
   create_table "problems", force: :cascade do |t|
@@ -31,4 +47,6 @@ ActiveRecord::Schema.define(version: 2020_08_27_070235) do
     t.string "type"
   end
 
+  add_foreign_key "matches", "problems"
+  add_foreign_key "no_matches", "problems"
 end

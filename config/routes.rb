@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :no_matches
+  resources :matches
   resources :problems
   resources :employees
   resources :salaries, only: :show

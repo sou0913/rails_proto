@@ -7,6 +7,7 @@
 Problem.create(title: "基本問題", target: "abc", statement: "abcdefg", type: "FindProblem")
 Problem.create(title: "基本問題2", target: "xyz", statement: "xxyzz", type: "FindProblem")
 Problem.create(title: "基本問題3", target: "abcccc", statement: "abc", type: "FindProblem")
+
 Problem.create(
   title: "置換問題",
   senario: "¥表記を円表記に直してください。例) ¥10,000 => 10,000円",
