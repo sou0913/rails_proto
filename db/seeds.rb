@@ -4,7 +4,9 @@
 # 50.times do
 #   Employee.create(name: Faker::Name.name, type: "Salesman", service_years: 2)
 # end
-Problem.create(title: "基本問題", target: "abc", statement: "abcdefg", type: "FindProblem")
+problem = Problem.create(title: "基本問題", target: "abc", statement: "abcdefg", type: "FindProblem")
+problem.matches = [Match.new(word: "a"), Match.new(word: "b")]
+problem.no_matches = [NoMatch.new(word: "c"), NoMatch.new(word: "d")]
 Problem.create(title: "基本問題2", target: "xyz", statement: "xxyzz", type: "FindProblem")
 Problem.create(title: "基本問題3", target: "abcccc", statement: "abc", type: "FindProblem")
 

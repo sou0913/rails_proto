@@ -8,4 +8,12 @@ class Problem < ApplicationRecord
     validates :statement
     validates :type
   end
+
+  def match_words
+    matches.pluck(:word)
+  end
+
+  def no_match_words
+    no_matches.pluck(:word)
+  end
 end

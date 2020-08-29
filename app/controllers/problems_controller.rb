@@ -1,17 +1,17 @@
 class ProblemsController < ApplicationController
     # GET problems?page=1
     def index
-      problems = Problem.page(params[:page]).select(:id, :title)
+      problems = Problem.preload(:matches, :no_matches).page(params[:page])
       total_rows = Problem.count
       render json: { 
-        problems: problems,
+        problems: ActiveModelSerializers::SerializableResource.new(problems).as_json,
         total_rows: total_rows
       }
     end
 
     def create
-      problem = Problem.new(problem_params)
-      if problem.save
+      problem_form = ProblemForm.new(problem_form_params)
+      if problem_form.save
         render :no_content
       else
         render status: 422
@@ -26,9 +26,9 @@ class ProblemsController < ApplicationController
 
     private
 
-    def problem_params
+    def problem_form_params
       params.require(:problem).permit(
-        :type, :title, :target, :statement, :senario, :after_replace_answer
+        :id, :type, :title, :target, :statement, :senario, :afterReplaceAnswer, matches: [], noMatches: []
       )
     end
 end
