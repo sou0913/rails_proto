@@ -7,13 +7,42 @@ RSpec.describe "Problems", type: :request do
       expect(subject).to eq 200
     end
   end
+
   describe 'show' do
     subject { get '/problems/1' }
     before do
-      Problem.create(title: '基本問題1', target: 'abc', statement: 'abcabc')
+      create(:problem)
     end
     it 'returns 200' do
       expect(subject).to eq 200
+    end
+  end
+
+  describe 'create' do
+    subject { post '/problems', params: {
+      problem: {
+        type: "FindProblem",
+        title: "test",
+        statement: "test",
+        matches: ["11", "22"],
+        noMatches: ["aa", "bb"],
+        target: "abcdefg",
+        senario: "abc",
+        afterReplaceAnswer: "abcdefg"
+      }
+    } }
+    it 'returns 200' do
+      is_expected.to eq 200
+    end
+  end
+
+  describe 'destroy' do
+    subject { delete '/problems/1' }
+    before do
+      create(:problem)
+    end
+    it 'returns 200' do
+      is_expected.to eq 200
     end
   end
 end

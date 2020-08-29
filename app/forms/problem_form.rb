@@ -1,10 +1,12 @@
 class ProblemForm
   include ActiveModel::Model
 
-  attr_accessor :id, :type, :title, :target, :statement, :senario, :afterReplaceAnswer, :matches, :noMatches
+  attr_accessor :id, :type, :title, :target, :statement, :senario,
+                :afterReplaceAnswer, :matches, :noMatches
 
   def save
-    problem = Problem.new(problem_attrs)
+    problem = Problem.find_or_initialize_by(id: id)
+    problem.assign_attributes(problem_attrs)
     problem.matches = match_instances(problem)
     problem.no_matches = no_match_instances(problem)
     problem.save
@@ -13,7 +15,7 @@ class ProblemForm
   private
 
   def problem_attrs
-    { type: type, title: title, target: target, statement: statement,
+    { id: id, type: type, title: title, target: target, statement: statement,
       senario: senario, after_replace_answer: afterReplaceAnswer }
   end
 
