@@ -40,7 +40,7 @@ module Myapp
         origins "*"
         resource "*",
           headers: :any,
-          methods: [:get, :post, :delete, :options, :head]
+          methods: [:get, :post, :put, :delete, :options, :head]
       end
     end
   end

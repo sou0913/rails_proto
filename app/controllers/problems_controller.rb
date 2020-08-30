@@ -25,6 +25,17 @@ class ProblemsController < ApplicationController
       render json: problem
     end
 
+    # PUT problems/1
+    def update
+      problem = Problem.find(params[:id])
+      problem_form = ProblemForm.new(problem_form_params)
+      if problem_form.save
+        render :no_content
+      else
+        render status: 422
+      end
+    end
+
     # DELETE problems/1
     def destroy
       problem = Problem.find(params[:id])
@@ -39,7 +50,7 @@ class ProblemsController < ApplicationController
 
     def problem_form_params
       params.require(:problem).permit(
-        :id, :type, :title, :target, :statement, :senario, :afterReplaceAnswer, matches: [], noMatches: []
-      )
+        :type, :title, :target, :statement, :senario, :afterReplaceAnswer, matches: [], noMatches: []
+      ).merge({ id: params[:id] })
     end
 end
